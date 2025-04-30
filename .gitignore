@@ -1,0 +1,18 @@
+# Java
+*.class
+*.jar
+*.war
+*.iml
+*.log
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
