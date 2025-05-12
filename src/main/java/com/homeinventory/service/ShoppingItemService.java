@@ -62,6 +62,7 @@ public class ShoppingItemService {
                 .orElseThrow(() -> new RuntimeException("Item not found"));
         existing.setItemName(updatedItem.getItemName());
         existing.setQuantity(updatedItem.getQuantity());
+        existing.setUnit(updatedItem.getUnit());
         return shoppingItemRepository.save(existing);
     }
 
