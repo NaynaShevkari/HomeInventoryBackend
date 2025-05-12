@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class GroupService {
@@ -48,5 +49,18 @@ public class GroupService {
     }
     public Optional<Group> getGroupByName(String groupName) {
         return groupRepository.findByGroupName(groupName);
+    }
+
+    public void exitGroup(UUID groupId, String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new RuntimeException("Group not found"));
+
+        UserGroupMembership membership = membershipRepository.findByUserAndGroup(user, group)
+                .orElseThrow(() -> new RuntimeException("Membership not found"));
+
+        membershipRepository.delete(membership);
     }
 }

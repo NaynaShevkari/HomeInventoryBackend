@@ -6,6 +6,7 @@ import com.homeinventory.model.UserGroupMembership;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface UserGroupMembershipRepository extends JpaRepository<UserGroupMembership, UUID> {
@@ -21,4 +22,7 @@ public interface UserGroupMembershipRepository extends JpaRepository<UserGroupMe
     List<UserGroupMembership> findByGroupAndIsApprovedTrue(Group group);
 
     boolean existsByGroupAndUser(Group group, User user);
+
+    Optional<UserGroupMembership> findByUserAndGroup(User user, Group group);
+
 }

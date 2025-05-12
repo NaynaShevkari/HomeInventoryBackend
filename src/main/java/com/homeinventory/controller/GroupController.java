@@ -71,4 +71,10 @@ public class GroupController {
         return ResponseEntity.ok(pending);
     }
 
+    @DeleteMapping("/{groupId}/exit")
+    public ResponseEntity<String> exitGroup(@PathVariable UUID groupId, @RequestParam String username) {
+        groupService.exitGroup(groupId, username);
+        return ResponseEntity.ok("User exited the group successfully.");
+    }
+
 }
