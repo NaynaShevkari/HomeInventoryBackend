@@ -28,5 +28,7 @@ public class ShoppingItem {
 
     private int quantity;  // How much to buy
 
+    private String unit;
+
     private LocalDateTime addedAt; // Timestamp when added
 }

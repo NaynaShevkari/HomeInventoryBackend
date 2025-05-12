@@ -19,8 +19,9 @@ public class ShoppingItemController {
     @PostMapping("/add")
     public ResponseEntity<ShoppingItem> addShoppingItem(@RequestParam String groupName,
                                                         @RequestParam String itemName,
-                                                        @RequestParam int quantity) {
-        ShoppingItem item = shoppingItemService.addShoppingItem(groupName, itemName, quantity);
+                                                        @RequestParam int quantity,
+                                                        @RequestParam String unit) {
+        ShoppingItem item = shoppingItemService.addShoppingItem(groupName, itemName, quantity, unit);
         return ResponseEntity.ok(item);
     }
 
@@ -34,5 +35,23 @@ public class ShoppingItemController {
     public ResponseEntity<String> removeShoppingItem(@PathVariable UUID shoppingItemId) {
         shoppingItemService.removeShoppingItem(shoppingItemId);
         return ResponseEntity.ok("Item removed from shopping list successfully!");
+    }
+
+    @PutMapping("/update/{itemId}")
+    public ResponseEntity<ShoppingItem> updateShoppingItem(@PathVariable UUID itemId, @RequestBody ShoppingItem updatedItem) {
+        ShoppingItem item = shoppingItemService.updateItem(itemId, updatedItem);
+        return ResponseEntity.ok(item);
+    }
+
+    @DeleteMapping("/delete/{itemId}")
+    public ResponseEntity<String> deleteShoppingItem(@PathVariable UUID itemId) {
+        shoppingItemService.deleteItem(itemId);
+        return ResponseEntity.ok("Item deleted");
+    }
+
+    @PostMapping("/bought/{itemId}")
+    public ResponseEntity<String> markItemAsBought(@PathVariable UUID itemId) {
+        shoppingItemService.markAsBought(itemId);
+        return ResponseEntity.ok("Item moved to inventory");
     }
 }

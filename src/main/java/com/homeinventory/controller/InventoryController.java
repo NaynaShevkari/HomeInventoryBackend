@@ -48,4 +48,22 @@ public class InventoryController {
         }
     }
 
+    @DeleteMapping("/finish/{itemId}")
+    public ResponseEntity<String> markItemAsFinished(@PathVariable UUID itemId,
+                                                     @RequestParam boolean addToShopping) {
+        inventoryService.markAsFinished(itemId, addToShopping);
+        return ResponseEntity.ok("Item marked as finished");
+    }
+
+    @PutMapping("/update/{itemId}")
+    public ResponseEntity<InventoryItem> updateItem(@PathVariable UUID itemId, @RequestBody InventoryItem updatedItem) {
+        InventoryItem item = inventoryService.updateItem(itemId, updatedItem);
+        return ResponseEntity.ok(item);
+    }
+    @DeleteMapping("/delete/{itemId}")
+    public ResponseEntity<?> deleteItem(@PathVariable UUID itemId) {
+        inventoryService.deleteItem(itemId);
+        return ResponseEntity.ok("Item deleted");
+    }
+
 }
