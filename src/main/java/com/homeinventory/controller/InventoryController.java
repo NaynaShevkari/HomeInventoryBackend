@@ -65,5 +65,4 @@ public class InventoryController {
         inventoryService.deleteItem(itemId);
         return ResponseEntity.ok("Item deleted");
     }
-
-}
+    }
