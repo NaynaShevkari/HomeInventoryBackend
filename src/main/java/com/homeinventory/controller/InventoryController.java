@@ -22,12 +22,14 @@ public class InventoryController {
     public ResponseEntity<InventoryItem> addItem(@RequestParam String groupName,
                                                  @RequestParam String username,
                                                  @RequestParam String itemName,
-                                                 @RequestParam int quantity,
+                                                 @RequestParam double quantity,
                                                  @RequestParam String unit,
                                                  @RequestParam(required = false)
                                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                                 LocalDate expiryDate) {
-        InventoryItem item = inventoryService.addItem(groupName, username, itemName, quantity, unit, expiryDate);
+                                                 LocalDate expiryDate,
+                                                 @RequestParam String store,
+                                                 @RequestParam String category) {
+        InventoryItem item = inventoryService.addItem(groupName, username, itemName, quantity, unit, expiryDate, store, category);
         return ResponseEntity.ok(item);
     }
 

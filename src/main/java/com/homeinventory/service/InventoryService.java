@@ -36,7 +36,7 @@ public class InventoryService {
     private ShoppingItemRepository shoppingItemRepository;
 
 
-    public InventoryItem addItem(String groupName, String username, String itemName, int quantity, String unit, LocalDate expiryDate) {
+    public InventoryItem addItem(String groupName, String username, String itemName, double quantity, String unit, LocalDate expiryDate, String store, String category) {
         Group group = groupRepository.findByGroupName(groupName)
                 .orElseThrow(() -> new RuntimeException("Group not found"));
 
@@ -56,6 +56,8 @@ public class InventoryService {
         item.setQuantity(quantity);
         item.setUnit(unit);
         item.setExpiryDate(expiryDate);
+        item.setStore(store);
+        item.setCategory(category);
         item.setAddedBy(user);
         item.setAddedAt(LocalDateTime.now());
 
@@ -76,7 +78,7 @@ public class InventoryService {
         InventoryItem item = inventoryRepository.findById(itemId)
                 .orElseThrow(() -> new RuntimeException("Item not found"));
 
-        int updatedQuantity = item.getQuantity() - quantityToReduce;
+        double updatedQuantity = item.getQuantity() - quantityToReduce;
 
         if (updatedQuantity <= 0) {
             // If quantity becomes zero or negative, remove from inventory and add to shopping list

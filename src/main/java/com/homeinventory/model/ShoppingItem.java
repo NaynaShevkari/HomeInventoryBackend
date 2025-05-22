@@ -26,7 +26,7 @@ public class ShoppingItem {
     @Column(nullable = false)
     private String itemName;
 
-    private int quantity;  // How much to buy
+    private double quantity;  // How much to buy
 
     private String unit;
 

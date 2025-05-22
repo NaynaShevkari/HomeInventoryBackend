@@ -26,7 +26,7 @@ public class ShoppingItemService {
     @Autowired
     private GroupRepository groupRepository;
 
-    public ShoppingItem addShoppingItem(String groupName, String itemName, int quantity, String unit) {
+    public ShoppingItem addShoppingItem(String groupName, String itemName, double quantity, String unit) {
         Group group = groupRepository.findByGroupName(groupName)
                 .orElseThrow(() -> new RuntimeException("Group not found"));
 

@@ -26,7 +26,7 @@ public class InventoryItem {
     @Column(nullable = false)
     private String itemName;
 
-    private int quantity;  // Number of units available
+    private double quantity;  // Number of units available
 
     private String unit;   // Kg, Litre, Packets, etc.
 
@@ -37,4 +37,8 @@ public class InventoryItem {
     private User addedBy;   // Which user added this item
 
     private LocalDateTime addedAt; // Timestamp of addition
+
+    private String store;
+
+    private String category;
 }
