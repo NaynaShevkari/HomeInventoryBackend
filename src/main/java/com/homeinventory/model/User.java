@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"group_id", "username"})
+        @UniqueConstraint(columnNames = {"username"})
 })
 public class User {
 
@@ -28,10 +28,5 @@ public class User {
 
     @Column(name = "display_name")
     private String displayName;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "group_id")
-//    private Group group;
-//
-//    private boolean isApproved;
+
 }
